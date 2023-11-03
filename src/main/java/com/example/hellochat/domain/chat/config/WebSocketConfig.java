@@ -7,17 +7,10 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
 
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import webSocket.chat.domain.Chat;
-import webSocket.chat.dto.ChatMessage;
-import webSocket.chat.service.ChatService;
-
 
 @Controller
 @RequiredArgsConstructor
-public class ChatController {
+public class WebSocketConfig {
 
     private final ChatService chatService;
 
