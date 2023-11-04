@@ -1,11 +1,12 @@
 package com.example.hellochat.domain.chat.repository;
 
-import org.springframework.data.repository.CrudRepository;
-import webSocket.chat.domain.Chat;
+
+import com.example.hellochat.domain.chat.domain.Chat;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ChatRepository extends CrudRepository<Chat, Long> {
+public interface ChatRepository extends JpaRepository<Chat, Long> {
 
     List<Chat> findAllByRoomId(Long roomId);
 }

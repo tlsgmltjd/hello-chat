@@ -1,30 +1,25 @@
-package webSocket.chat.controller;
-import com.example.hellochat.domain.chat.domain.Chat;
+package com.example.hellochat.domain.chat.config;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
-import org.springframework.stereotype.Controller;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
+import org.springframework.web.socket.config.annotation.*;
 
-
-@Controller
+@Configuration
 @RequiredArgsConstructor
-public class WebSocketConfig {
+@EnableWebSocketMessageBroker
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-    private final ChatService chatService;
-
-    @MessageMapping("/{roomId}") //여기로 전송되면 메서드 호출 -> WebSocketConfig prefixes 에서 적용한건 앞에 생략
-    @SendTo("/room/{roomId}")   //구독하고 있는 장소로 메시지 전송 (목적지)  -> WebSocketConfig Broker 에서 적용한건 앞에 붙어줘야됨
-    public ChatMessage test(@DestinationVariable Long roomId, ChatMessage message) {
-
-        //채팅 저장
-        Chat chat = chatService.createChat(roomId, message.getSender(), message.getMessage());
-        return ChatMessage.builder()
-                .roomId(roomId)
-                .sender(chat.getSender())
-                .message(chat.getMessage())
-                .build();
+    @Override
+    public void configureMessageBroker(MessageBrokerRegistry registry) {
+        registry.setApplicationDestinationPrefixes("/send");       //클라이언트에서 보낸 메세지를 받을 prefix
+        registry.enableSimpleBroker("/room");    //해당 주소를 구독하고 있는 클라이언트들에게 메세지 전달
     }
 
+    @Override
+    public void registerStompEndpoints(StompEndpointRegistry registry) {
+        registry.addEndpoint("/ws-stomp")   //SockJS 연결 주소
+                .withSockJS(); //버전 낮은 브라우저에서도 적용 가능
+        // 주소 : ws://localhost:8080/ws-stomp
+    }
 }

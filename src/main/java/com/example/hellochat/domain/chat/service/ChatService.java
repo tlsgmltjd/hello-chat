@@ -6,6 +6,7 @@ import com.example.hellochat.domain.chat.repository.ChatRepository;
 import com.example.hellochat.domain.chat.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
