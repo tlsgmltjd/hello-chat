@@ -1,9 +1,9 @@
 package com.example.hellochat.global.config;
+import com.example.hellochat.global.jwt.JwtAuthenticationFilter;
+import com.example.hellochat.global.jwt.JwtAuthorizationFilter;
+import com.example.hellochat.global.jwt.JwtUtil;
+import com.example.hellochat.global.security.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
-import oneus.GSMATCH.global.jwt.JwtAuthenticationFilter;
-import oneus.GSMATCH.global.jwt.JwtAuthorizationFilter;
-import oneus.GSMATCH.global.jwt.JwtUtil;
-import oneus.GSMATCH.global.security.UserDetailsServiceImpl;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,8 @@
 package com.example.hellochat.global.jwt.controller;
 
+import com.example.hellochat.domain.user.entity.UserEntity;
 import com.example.hellochat.domain.user.repository.UserRepository;
+import com.example.hellochat.global.exception.CustomException;
 import com.example.hellochat.global.jwt.JwtUtil;
 import com.example.hellochat.global.jwt.service.RefreshTokenService;
 import io.jsonwebtoken.Claims;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import static com.example.hellochat.global.exception.ErrorCode.INVALID_TOKEN;
 
 @RestController
 @RequestMapping("/refresh")

@@ -1,8 +1,8 @@
 package com.example.hellochat.global.security;
 
+import com.example.hellochat.domain.user.entity.UserEntity;
+import com.example.hellochat.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import oneus.GSMATCH.domain.user.entity.UserEntity;
-import oneus.GSMATCH.domain.user.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
