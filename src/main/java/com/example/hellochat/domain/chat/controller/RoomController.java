@@ -2,10 +2,9 @@ package com.example.hellochat.domain.chat.controller;
 
 import com.example.hellochat.domain.chat.domain.Chat;
 import com.example.hellochat.domain.chat.domain.Room;
+import com.example.hellochat.domain.chat.dto.RoomName;
 import com.example.hellochat.domain.chat.service.ChatService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

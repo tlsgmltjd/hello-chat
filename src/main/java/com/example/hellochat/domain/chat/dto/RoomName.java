@@ -1,4 +1,4 @@
-package com.example.hellochat.domain.chat.controller;
+package com.example.hellochat.domain.chat.dto;
 
 
 import lombok.Getter;
