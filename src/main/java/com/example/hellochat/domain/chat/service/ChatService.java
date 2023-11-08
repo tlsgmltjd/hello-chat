@@ -32,10 +32,11 @@ public class ChatService {
 
     /**
      * 채팅방 만들기
+     *
      * @param name 방 이름
      */
-    public Room createRoom(String name) {
-        return roomRepository.save(Room.createRoom(name));
+    public void createRoom(String name) {
+        roomRepository.save(Room.createRoom(name));
     }
 
     /////////////////
