@@ -16,11 +16,10 @@ public class RoomController {
 
     private final ChatService chatService;
 
-    @GetMapping("/{roomId}")
-    public List<Chat> getChats(@PathVariable(required = false) Long roomId) {
-        List<Chat> chatList = chatService.findAllChatByRoomId(roomId);
 
-        return chatList;
+    @GetMapping("/chat/{roomId}")
+    public List<Chat> getChats(@PathVariable(required = false) Long roomId) {
+        return chatService.findAllChatByRoomId(roomId);
     }
 
     @PostMapping("/room")
@@ -28,10 +27,9 @@ public class RoomController {
         chatService.createRoom(room.getName());
     }
 
-    @GetMapping("/roomList")
+    @GetMapping("/rooms")
     public List<Room> roomList() {
-        List<Room> roomList = chatService.findAllRoom();
-        return roomList;
+        return chatService.findAllRoom();
     }
 
 }
