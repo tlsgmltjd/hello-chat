@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SnsServerApplication {
+public class ConnectApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SnsServerApplication.class, args);
+        SpringApplication.run(ConnectApplication.class, args);
     }
 }

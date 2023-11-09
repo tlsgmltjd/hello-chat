@@ -46,6 +46,4 @@ public class UserController {
 
         return ResponseEntity.ok(new MsgResponseDto("로그인 완료", HttpStatus.OK.value()));
     }
-
-    private final UserRepository userRepository;
 }
