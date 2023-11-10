@@ -10,14 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.Collections;
-import java.util.stream.Collectors;
-
-import static com.example.hellochat.global.exception.ErrorCode.DUPLICATED_USERNAME;
-import static com.example.hellochat.global.exception.ErrorCode.NOT_MATCH_INFORMATION;
+import static com.example.hellochat.global.exception.ErrorCode.*;
 
 @Service
 @Validated
@@ -71,7 +66,7 @@ public class UserService {
 
         // 비밀번호 일치 여부 확인
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new CustomException(NOT_MATCH_INFORMATION);
+            throw new CustomException(NOT_MATCH_PASSWORD);
         }
 
         return user;
