@@ -3,16 +3,14 @@ package com.example.hellochat.domain.user.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class PostDto {
-    private Long id;
-    private String title;
-    private String content;
-    private Integer likeCount;
-    private Integer commentCount;
+    private final Long id;
+    private final String title;
+    private final String content;
+    private final Integer likeCount;
+    private final Integer commentCount;
 }

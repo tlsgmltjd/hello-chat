@@ -7,15 +7,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class UserInfoResponse {
-    private Long id;
-    private String username;
-    private String explain;
-    private Long followers;
-    private Long following;
-    private Boolean isFollowed;
-    private List<PostDto> posts;
+    private final Long id;
+    private final String username;
+    private final String explain;
+    private final Long followers;
+    private final Long following;
+    private final Boolean isFollowed;
+    private final List<PostDto> posts;
 }

@@ -3,6 +3,7 @@ package com.example.hellochat.domain.comment.controller;
 import com.example.hellochat.domain.comment.dto.request.CreateCommentRequest;
 import com.example.hellochat.domain.comment.service.CommentService;
 import com.example.hellochat.global.util.MsgResponseDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping("/{boardId}")
-    public ResponseEntity<MsgResponseDto> commentCreate(@PathVariable Long boardId, @RequestBody CreateCommentRequest request) {
+    public ResponseEntity<MsgResponseDto> commentCreate(@PathVariable Long boardId, @RequestBody @Valid CreateCommentRequest request) {
         commentService.createComment(request, boardId);
         return ResponseEntity.ok(new MsgResponseDto("댓글이 정상적으로 저장되었습니다.", HttpStatus.OK.value()));
     }

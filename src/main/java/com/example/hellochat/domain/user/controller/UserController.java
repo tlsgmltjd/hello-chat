@@ -33,7 +33,7 @@ public class UserController {
 
     // 로그인
     @PostMapping("/login")
-    public ResponseEntity<MsgResponseDto> login(@RequestBody LoginRequest loginRequestDto, HttpServletResponse response) {
+    public ResponseEntity<MsgResponseDto> login(@RequestBody @Valid LoginRequest loginRequestDto, HttpServletResponse response) {
         UserEntity user = userService.login(loginRequestDto);
 
         String refreshToken = JwtUtil.createRefreshToken(user.getName());

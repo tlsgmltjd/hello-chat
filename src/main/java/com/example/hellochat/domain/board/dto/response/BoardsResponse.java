@@ -6,14 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class BoardsResponse {
-    private Long boardId;
-    private String title;
-    private String content;
-    private Integer commentCount;
-    private BoardsAuthorDto author;
-    private Integer likeCount;
+    private final Long boardId;
+    private final String title;
+    private final String content;
+    private final Integer commentCount;
+    private final BoardsAuthorDto author;
+    private final Integer likeCount;
 }
