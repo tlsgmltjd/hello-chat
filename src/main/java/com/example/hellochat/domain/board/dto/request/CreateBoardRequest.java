@@ -1,4 +1,4 @@
-package com.example.hellochat.domain.Board.dto.request;
+package com.example.hellochat.domain.board.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

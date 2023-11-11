@@ -1,8 +1,8 @@
-package com.example.hellochat.domain.Board.controller;
+package com.example.hellochat.domain.board.controller;
 
-import com.example.hellochat.domain.Board.dto.request.CreateBoardRequest;
-import com.example.hellochat.domain.Board.dto.response.BoardsResponse;
-import com.example.hellochat.domain.Board.service.BoardService;
+import com.example.hellochat.domain.board.dto.request.CreateBoardRequest;
+import com.example.hellochat.domain.board.dto.response.BoardsResponse;
+import com.example.hellochat.domain.board.service.BoardService;
 import com.example.hellochat.global.security.UserDetailsImpl;
 import com.example.hellochat.global.util.MsgResponseDto;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.example.hellochat.domain.user.entity;
 
-import com.example.hellochat.domain.Board.entity.Board;
+import com.example.hellochat.domain.board.entity.Board;
 import com.example.hellochat.global.util.UserRoleEnum;
 import jakarta.persistence.*;
 import lombok.*;

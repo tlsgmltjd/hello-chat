@@ -1,6 +1,6 @@
-package com.example.hellochat.domain.Board.entity;
+package com.example.hellochat.domain.comment.entity;
 
-import com.example.hellochat.domain.user.entity.UserEntity;
+import com.example.hellochat.domain.board.entity.Board;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,17 +11,15 @@ import org.springframework.data.annotation.CreatedDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Board {
+@Entity
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String title;
 
     private String content;
 
@@ -32,6 +30,6 @@ public class Board {
     private List<Long> likes;
 
     @ManyToOne
-    @JoinColumn(name = "author_id")
-    private UserEntity authorId;
+    @JoinColumn(name = "board_id")
+    private Board boardId;
 }

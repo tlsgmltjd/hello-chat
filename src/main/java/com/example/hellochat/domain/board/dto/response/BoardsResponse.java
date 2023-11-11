@@ -1,4 +1,4 @@
-package com.example.hellochat.domain.Board.dto.response;
+package com.example.hellochat.domain.board.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

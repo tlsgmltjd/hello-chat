@@ -1,13 +1,12 @@
-package com.example.hellochat.domain.Board.service;
+package com.example.hellochat.domain.board.service;
 
-import com.example.hellochat.domain.Board.dto.request.CreateBoardRequest;
-import com.example.hellochat.domain.Board.dto.response.BoardsAuthorDto;
-import com.example.hellochat.domain.Board.dto.response.BoardsResponse;
-import com.example.hellochat.domain.Board.entity.Board;
-import com.example.hellochat.domain.Board.repository.BoardRepository;
+import com.example.hellochat.domain.board.dto.request.CreateBoardRequest;
+import com.example.hellochat.domain.board.dto.response.BoardsAuthorDto;
+import com.example.hellochat.domain.board.dto.response.BoardsResponse;
+import com.example.hellochat.domain.board.entity.Board;
+import com.example.hellochat.domain.board.repository.BoardRepository;
 import com.example.hellochat.domain.user.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
