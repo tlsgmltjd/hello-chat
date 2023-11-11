@@ -1,5 +1,6 @@
 package com.example.hellochat.domain.user.service;
 
+import com.example.hellochat.domain.user.dto.response.PostDto;
 import com.example.hellochat.domain.user.dto.response.UserInfoResponse;
 import com.example.hellochat.domain.user.entity.UserEntity;
 import com.example.hellochat.domain.user.repository.UserRepository;
@@ -29,7 +30,9 @@ public class UserInfoService {
                 .followers(0L) // temp
                 .following(0L) // temp
                 .isFollowed(Objects.equals(findUser.getUsersId(), user.getUsersId()) ? null : false) // temp
-                .posts(findUser.getPosts()) // temp
+                .posts(findUser.getPosts().stream().map(
+                        post -> new PostDto(post.getId(), post.getTitle(), post.getContent(), (long) post.getLikes().size(), 0L) // update comment
+                ).toList())
                 .build();
     }
 }

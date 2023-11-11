@@ -1,6 +1,5 @@
 package com.example.hellochat.domain.user.dto.response;
 
-import com.example.hellochat.domain.Board.entity.Board;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,5 +17,5 @@ public class UserInfoResponse {
     private Long followers;
     private Long following;
     private Boolean isFollowed;
-    private List<Board> posts; // test
+    private List<PostDto> posts;
 }
