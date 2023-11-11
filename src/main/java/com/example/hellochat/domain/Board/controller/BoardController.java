@@ -1,17 +1,14 @@
 package com.example.hellochat.domain.Board.controller;
 
 import com.example.hellochat.domain.Board.dto.request.CreateBoardRequest;
-import com.example.hellochat.domain.Board.repository.BoardService;
+import com.example.hellochat.domain.Board.service.BoardService;
 import com.example.hellochat.global.security.UserDetailsImpl;
 import com.example.hellochat.global.util.MsgResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor

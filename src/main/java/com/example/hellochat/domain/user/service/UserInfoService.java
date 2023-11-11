@@ -31,7 +31,7 @@ public class UserInfoService {
                 .following(0L) // temp
                 .isFollowed(Objects.equals(findUser.getUsersId(), user.getUsersId()) ? null : false) // temp
                 .posts(findUser.getPosts().stream().map(
-                        post -> new PostDto(post.getId(), post.getTitle(), post.getContent(), (long) post.getLikes().size(), 0L) // update comment
+                        post -> new PostDto(post.getId(), post.getTitle(), post.getContent(), post.getLikes().size(), 0) // update comment
                 ).toList())
                 .build();
     }

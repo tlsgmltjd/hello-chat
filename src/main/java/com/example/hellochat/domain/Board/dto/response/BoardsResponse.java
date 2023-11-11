@@ -1,4 +1,4 @@
-package com.example.hellochat.domain.user.dto.response;
+package com.example.hellochat.domain.Board.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,10 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PostDto {
-    private Long id;
+public class BoardsResponse {
+    private Long boardId;
     private String title;
     private String content;
-    private Integer likeCount;
+    // comment
     private Integer commentCount;
+    private BoardsAuthorDto author;
+    private Integer likeCount;
 }
