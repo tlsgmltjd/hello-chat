@@ -39,7 +39,7 @@ public class BoardService {
                         .content(board.getContent())
                         .author(new BoardsAuthorDto(board.getAuthorId().getUsersId(), board.getAuthorId().getName()))
                         .likeCount(board.getLikes().size())
-                        .commentCount(0).build()) // temp
+                        .commentCount(board.getComment().size()).build())
                 .toList();
     }
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class CommentController {
     private final CommentService commentService;
 
-    @GetMapping("/{boardId}")
+    @PostMapping("/{boardId}")
     public ResponseEntity<MsgResponseDto> commentCreate(@PathVariable Long boardId, @RequestBody CreateCommentRequest request) {
         commentService.createComment(request, boardId);
         return ResponseEntity.ok(new MsgResponseDto("댓글이 정상적으로 저장되었습니다.", HttpStatus.OK.value()));

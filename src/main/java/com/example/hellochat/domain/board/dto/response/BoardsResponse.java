@@ -13,7 +13,6 @@ public class BoardsResponse {
     private Long boardId;
     private String title;
     private String content;
-    // comment
     private Integer commentCount;
     private BoardsAuthorDto author;
     private Integer likeCount;
