@@ -32,4 +32,9 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "board_id")
     private Board boardId;
+
+    public Comment(String content, Board boardId) {
+        this.content = content;
+        this.boardId = boardId;
+    }
 }
