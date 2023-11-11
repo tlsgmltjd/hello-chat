@@ -29,7 +29,7 @@ public class UserInfoService {
                 .followers(0L) // temp
                 .following(0L) // temp
                 .isFollowed(Objects.equals(findUser.getUsersId(), user.getUsersId()) ? null : false) // temp
-                .posts(List.of()) // temp
+                .posts(findUser.getPosts()) // temp
                 .build();
     }
 }

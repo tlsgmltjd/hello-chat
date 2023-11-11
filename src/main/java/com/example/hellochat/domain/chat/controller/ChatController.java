@@ -1,6 +1,6 @@
 package com.example.hellochat.domain.chat.controller;
 
-import com.example.hellochat.domain.chat.domain.Chat;
+import com.example.hellochat.domain.chat.entity.Chat;
 import com.example.hellochat.domain.chat.dto.ChatMessage;
 import com.example.hellochat.domain.chat.service.ChatService;
 import lombok.RequiredArgsConstructor;

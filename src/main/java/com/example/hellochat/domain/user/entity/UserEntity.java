@@ -1,8 +1,11 @@
 package com.example.hellochat.domain.user.entity;
 
+import com.example.hellochat.domain.Board.entity.Board;
 import com.example.hellochat.global.util.UserRoleEnum;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -32,5 +35,6 @@ public class UserEntity {
     @Column(name = "password")
     private String password;
 
-
+    @OneToMany(mappedBy = "authorId")
+    private List<Board> posts;
 }

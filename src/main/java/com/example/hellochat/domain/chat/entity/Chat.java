@@ -1,4 +1,4 @@
-package com.example.hellochat.domain.chat.domain;
+package com.example.hellochat.domain.chat.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

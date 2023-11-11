@@ -2,7 +2,6 @@ package com.example.hellochat.domain.user.controller;
 
 import com.example.hellochat.domain.user.dto.response.UserInfoResponse;
 import com.example.hellochat.domain.user.service.UserInfoService;
-import com.example.hellochat.domain.user.service.UserService;
 import com.example.hellochat.global.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

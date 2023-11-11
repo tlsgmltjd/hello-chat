@@ -1,7 +1,7 @@
 package com.example.hellochat.domain.chat.controller;
 
-import com.example.hellochat.domain.chat.domain.Chat;
-import com.example.hellochat.domain.chat.domain.Room;
+import com.example.hellochat.domain.chat.entity.Chat;
+import com.example.hellochat.domain.chat.entity.Room;
 import com.example.hellochat.domain.chat.dto.RoomName;
 import com.example.hellochat.domain.chat.service.ChatService;
 import lombok.RequiredArgsConstructor;
