@@ -1,6 +1,5 @@
 package com.example.hellochat.domain.chat.dto;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 

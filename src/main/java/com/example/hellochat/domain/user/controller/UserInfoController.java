@@ -19,7 +19,7 @@ public class UserInfoController {
     private final UserInfoService userInfoService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserInfoResponse> userfind(@PathVariable Long userId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public ResponseEntity<UserInfoResponse> userFind(@PathVariable Long userId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(userInfoService.findUser(userId, userDetails.getUser()));
     }
 }

@@ -4,7 +4,6 @@ package com.example.hellochat.domain.user.repository;
 import com.example.hellochat.domain.user.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 
