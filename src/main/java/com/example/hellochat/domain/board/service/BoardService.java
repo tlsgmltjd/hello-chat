@@ -7,6 +7,8 @@ import com.example.hellochat.domain.board.dto.response.BoardResponse;
 import com.example.hellochat.domain.board.dto.response.BoardsResponse;
 import com.example.hellochat.domain.board.entity.Board;
 import com.example.hellochat.domain.board.repository.BoardRepository;
+import com.example.hellochat.domain.comment.entity.Comment;
+import com.example.hellochat.domain.comment.repository.CommentRepository;
 import com.example.hellochat.domain.user.entity.UserEntity;
 import com.example.hellochat.global.exception.CustomException;
 import static com.example.hellochat.global.exception.ErrorCode.*;
@@ -20,6 +22,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardService {
     private final BoardRepository boardRepository;
+    private final CommentRepository commentRepository;
 
     @Transactional
     public void postBoard(CreateBoardRequest request, UserEntity user) {
@@ -52,12 +55,21 @@ public class BoardService {
         Board board = boardRepository.findById(boardId)
                 .orElseThrow(() -> new CustomException(NOT_FOUND));
 
+        List<Comment> comments = commentRepository.findByBoardId(board);
+
         return BoardResponse.builder()
                 .boardId(board.getId())
                 .title(board.getTitle())
                 .content(board.getContent())
                 .author(new BoardAuthorDto(board.getAuthorId().getUsersId(), board.getAuthorId().getName()))
-
+                .comments(comments.stream()
+                        .map(comment -> BoardCommentsDto.builder()
+                                .id(comment.getId())
+                                .content(comment.getContent())
+                                .date(comment.getDate())
+                                .author(new BoardAuthorDto(comment.getAuthorId().getUsersId(), comment.getAuthorId().getName()))
+                                .build())
+                        .toList())
                 .build();
     }
 }
