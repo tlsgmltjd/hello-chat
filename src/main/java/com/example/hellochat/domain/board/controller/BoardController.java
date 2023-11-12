@@ -1,6 +1,7 @@
 package com.example.hellochat.domain.board.controller;
 
 import com.example.hellochat.domain.board.dto.request.CreateBoardRequest;
+import com.example.hellochat.domain.board.dto.response.BoardResponse;
 import com.example.hellochat.domain.board.dto.response.BoardsResponse;
 import com.example.hellochat.domain.board.service.BoardService;
 import com.example.hellochat.global.security.UserDetailsImpl;
@@ -29,5 +30,10 @@ public class BoardController {
     @GetMapping
     public ResponseEntity<List<BoardsResponse>> boardsFind() {
         return ResponseEntity.ok(boardService.findBoards());
+    }
+
+    @GetMapping("/{boardId}")
+    public ResponseEntity<BoardResponse> boardFind(@PathVariable Long boardId) {
+        return ResponseEntity.ok(boardService.findBoard(boardId));
     }
 }
