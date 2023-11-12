@@ -1,7 +1,7 @@
 package com.example.hellochat.domain.board.service;
 
 import com.example.hellochat.domain.board.dto.request.CreateBoardRequest;
-import com.example.hellochat.domain.board.dto.response.BoardsAuthorDto;
+import com.example.hellochat.domain.board.dto.response.BoardAuthorDto;
 import com.example.hellochat.domain.board.dto.response.BoardsResponse;
 import com.example.hellochat.domain.board.entity.Board;
 import com.example.hellochat.domain.board.repository.BoardRepository;
@@ -37,9 +37,12 @@ public class BoardService {
                         .boardId(board.getId())
                         .title(board.getTitle())
                         .content(board.getContent())
-                        .author(new BoardsAuthorDto(board.getAuthorId().getUsersId(), board.getAuthorId().getName()))
+                        .author(new BoardAuthorDto(board.getAuthorId().getUsersId(), board.getAuthorId().getName()))
                         .likeCount(board.getLikes().size())
                         .commentCount(board.getComment().size()).build())
                 .toList();
     }
+
+    @Transactional(readOnly = true)
+    public
 }

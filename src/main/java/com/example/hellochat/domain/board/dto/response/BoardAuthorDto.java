@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @Builder
-public class BoardsAuthorDto {
+public class BoardAuthorDto {
     private final Long id;
     private final String username;
 }
