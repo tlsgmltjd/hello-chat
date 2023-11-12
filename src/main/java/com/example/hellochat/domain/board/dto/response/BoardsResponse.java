@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-@Getter
-@AllArgsConstructor
 @Builder
-public class BoardsResponse {
-    private final Long boardId;
-    private final String title;
-    private final String content;
-    private final Integer commentCount;
-    private final BoardAuthorDto author;
-    private final Integer likeCount;
-}
+public record BoardsResponse (
+    Long boardId,
+    String title,
+    String content,
+    Integer commentCount,
+    BoardAuthorDto author,
+    Integer likeCount
+) {}

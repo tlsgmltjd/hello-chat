@@ -7,13 +7,11 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
+
 @Builder
-public class BoardCommentsDto {
-    private Long id;
-    private String content;
-    private LocalDateTime date;
-    private BoardAuthorDto author;
-}
+public record BoardCommentsDto (
+    Long id,
+    String content,
+    LocalDateTime date,
+    BoardAuthorDto author
+) {}

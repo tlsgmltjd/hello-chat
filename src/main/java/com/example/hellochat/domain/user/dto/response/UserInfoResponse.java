@@ -6,15 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-@Getter
-@AllArgsConstructor
 @Builder
-public class UserInfoResponse {
-    private final Long id;
-    private final String username;
-    private final String explain;
-    private final Long followers;
-    private final Long following;
-    private final Boolean isFollowed;
-    private final List<PostDto> posts;
-}
+public record UserInfoResponse (
+    Long id,
+    String username,
+    String explain,
+    Long followers,
+    Long following,
+    Boolean isFollowed,
+    List<PostDto> posts
+) {}
