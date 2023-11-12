@@ -15,6 +15,8 @@ public enum ErrorCode {
 
     NOT_MATCH_INFORMATION(HttpStatus.BAD_REQUEST, "사용자를 찾을 수 없습니다."),
 
+    NOT_FOUND(HttpStatus.BAD_REQUEST, "해당 데이터를 찾을 수 없습니다."),
+
     NOT_MATCH_PASSWORD(HttpStatus.BAD_REQUEST, "비밀번호가 틀립니다."),
 
     INVALID_TOKEN(HttpStatus.UNAUTHORIZED, "토큰이 유효하지 않습니다."),

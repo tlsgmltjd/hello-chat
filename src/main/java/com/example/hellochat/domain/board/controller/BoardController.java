@@ -28,6 +28,6 @@ public class BoardController {
 
     @GetMapping
     public ResponseEntity<List<BoardsResponse>> boardsFind() {
-        return ResponseEntity.ok(boardService.findBoad());
+        return ResponseEntity.ok(boardService.findBoards());
     }
 }

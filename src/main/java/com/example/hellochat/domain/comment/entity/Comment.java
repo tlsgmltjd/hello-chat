@@ -1,6 +1,7 @@
 package com.example.hellochat.domain.comment.entity;
 
 import com.example.hellochat.domain.board.entity.Board;
+import com.example.hellochat.domain.user.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,6 +36,9 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "board_id")
     private Board boardId;
+
+    @ManyToOne
+    private UserEntity authorId;
 
     public Comment(String content, Board boardId) {
         this.content = content;
