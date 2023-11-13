@@ -2,10 +2,10 @@ spring:
   datasource:
     url: jdbc:postgresql://ep-aged-field-92691210.ap-southeast-1.aws.neon.tech/connect
     username: tlsgmltjd
-    password: ${DB_PASSWORD}
+    password: cmzF2I4YZRDv
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: create-drop
     show-sql: true
     properties:
       hibernate:
