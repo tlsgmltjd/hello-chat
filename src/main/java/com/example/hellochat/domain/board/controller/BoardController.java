@@ -1,5 +1,6 @@
 package com.example.hellochat.domain.board.controller;
 
+import com.example.hellochat.domain.board.dto.request.BoardLikeRequest;
 import com.example.hellochat.domain.board.dto.request.CreateBoardRequest;
 import com.example.hellochat.domain.board.dto.response.BoardResponse;
 import com.example.hellochat.domain.board.dto.response.BoardsResponse;
@@ -35,5 +36,10 @@ public class BoardController {
     @GetMapping("/{boardId}")
     public ResponseEntity<BoardResponse> boardFind(@PathVariable Long boardId) {
         return ResponseEntity.ok(boardService.findBoard(boardId));
+    }
+
+    @PostMapping("/like")
+    public ResponseEntity<MsgResponseDto> boardLike(@RequestBody BoardLikeRequest request, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return ResponseEntity.ok(boardService.likeBoard(request, userDetails.getUser()));
     }
 }

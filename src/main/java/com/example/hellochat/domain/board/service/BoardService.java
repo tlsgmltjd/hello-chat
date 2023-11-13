@@ -13,7 +13,11 @@ import com.example.hellochat.domain.comment.repository.CommentRepository;
 import com.example.hellochat.domain.user.entity.UserEntity;
 import com.example.hellochat.global.exception.CustomException;
 import static com.example.hellochat.global.exception.ErrorCode.*;
+
+import com.example.hellochat.global.util.MsgResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -76,15 +80,17 @@ public class BoardService {
     }
 
     @Transactional
-    public void likeBoard(BoardLikeRequest request, UserEntity user) {
+    public MsgResponseDto likeBoard(BoardLikeRequest request, UserEntity user) {
         Board board = boardRepository.findById(request.getBoardId())
                 .orElseThrow(() -> new CustomException(NOT_FOUND));
 
         if (board.getLikes().stream()
                 .noneMatch(likedId -> Objects.equals(likedId, user.getUsersId()))) {
             board.addLike(user.getUsersId());
+            return new MsgResponseDto("좋아요 등록이 완료되었습니다.", HttpStatus.NO_CONTENT.value());
         } else {
             board.removeLike(user.getUsersId());
+            return new MsgResponseDto("좋아요 취소가 완료되었습니다.", HttpStatus.NO_CONTENT.value());
         }
     }
 }
