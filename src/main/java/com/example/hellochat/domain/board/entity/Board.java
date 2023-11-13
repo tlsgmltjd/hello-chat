@@ -41,4 +41,13 @@ public class Board {
 
     @OneToMany(mappedBy = "boardId")
     private List<Comment> comment;
+
+    public void addLike(Long userId) {
+        likes.add(userId);
+    }
+
+    public void removeLike(Long userId) {
+        likes.remove(userId);
+    }
+
 }

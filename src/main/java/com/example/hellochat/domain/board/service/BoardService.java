@@ -1,5 +1,6 @@
 package com.example.hellochat.domain.board.service;
 
+import com.example.hellochat.domain.board.dto.request.BoardLikeRequest;
 import com.example.hellochat.domain.board.dto.request.CreateBoardRequest;
 import com.example.hellochat.domain.board.dto.response.BoardAuthorDto;
 import com.example.hellochat.domain.board.dto.response.BoardCommentsDto;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -71,5 +73,18 @@ public class BoardService {
                                 .build())
                         .toList())
                 .build();
+    }
+
+    @Transactional
+    public void likeBoard(BoardLikeRequest request, UserEntity user) {
+        Board board = boardRepository.findById(request.getBoardId())
+                .orElseThrow(() -> new CustomException(NOT_FOUND));
+
+        if (board.getLikes().stream()
+                .noneMatch(likedId -> Objects.equals(likedId, user.getUsersId()))) {
+            board.addLike(user.getUsersId());
+        } else {
+            board.removeLike(user.getUsersId());
+        }
     }
 }

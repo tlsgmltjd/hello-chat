@@ -76,8 +76,8 @@ public class WebSecurityConfig {
                 authorizeHttpRequests
                         .requestMatchers(new AntPathRequestMatcher("/refresh")).permitAll()
 
-                        .requestMatchers(new AntPathRequestMatcher("/rooms")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/chat/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/rooms")).permitAll() // temp
+                        .requestMatchers(new AntPathRequestMatcher("/chat/**")).permitAll() // temp
 
                         .requestMatchers(new AntPathRequestMatcher("/ws-stomp/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/auth/**")).permitAll()
