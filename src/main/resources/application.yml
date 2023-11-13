@@ -1,9 +1,8 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: jdbc:postgresql://ep-aged-field-92691210.ap-southeast-1.aws.neon.tech/connect
+    username: tlsgmltjd
+    password: {PASSWORD}
   h2:
     console:
       enabled: true
@@ -16,7 +15,7 @@ spring:
       hibernate:
         format_sql: true
         use_sql_comments: true
-        dialect: org.hibernate.dialect.H2Dialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 jwt:
   secret:
