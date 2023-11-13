@@ -40,8 +40,9 @@ public class Comment {
     @ManyToOne
     private UserEntity authorId;
 
-    public Comment(String content, Board boardId) {
+    public Comment(String content, Board boardId, UserEntity authorId) {
         this.content = content;
         this.boardId = boardId;
+        this.authorId = authorId;
     }
 }
