@@ -22,7 +22,6 @@ import java.io.IOException;
 import static com.example.hellochat.global.exception.ErrorCode.INVALID_TOKEN;
 import static com.example.hellochat.global.exception.ErrorCode.NOT_MATCH_INFORMATION;
 
-@Slf4j(topic = "JWT 검증 및 인가")
 @RequiredArgsConstructor
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
