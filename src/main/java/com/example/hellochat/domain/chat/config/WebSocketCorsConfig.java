@@ -11,7 +11,8 @@ public class WebSocketCorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOriginPatterns("*")
-                .exposedHeaders("Authorization", "Refresh-Token")
+                .exposedHeaders("Authorization", "Refresh-Token", "Access-Control-Allow-Origin")
+                .allowedHeaders("Authorization", "Content-Type")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowCredentials(true);
     }
