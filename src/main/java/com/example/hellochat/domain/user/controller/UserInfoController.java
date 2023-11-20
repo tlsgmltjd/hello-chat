@@ -1,5 +1,6 @@
 package com.example.hellochat.domain.user.controller;
 
+import com.example.hellochat.domain.user.dto.response.SearchUserInfoResponse;
 import com.example.hellochat.domain.user.dto.response.UserInfoResponse;
 import com.example.hellochat.domain.user.service.UserInfoService;
 import com.example.hellochat.global.security.UserDetailsImpl;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
@@ -20,5 +23,10 @@ public class UserInfoController {
     @GetMapping("/{userId}")
     public ResponseEntity<UserInfoResponse> userFind(@PathVariable Long userId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(userInfoService.findUser(userId, userDetails.getUser()));
+    }
+
+    @GetMapping("/{username}")
+    public ResponseEntity<List<SearchUserInfoResponse>> userSearchFind() {
+        return
     }
 }
