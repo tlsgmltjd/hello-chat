@@ -1,6 +1,5 @@
 package com.example.hellochat.domain.board.dto.request;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
