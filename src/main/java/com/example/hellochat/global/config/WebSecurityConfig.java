@@ -102,6 +102,8 @@ public class WebSecurityConfig {
 
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
         configuration.addAllowedHeader("*");
+        configuration.addExposedHeader("Authorization");
+        configuration.addExposedHeader("Refresh-Token");
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowCredentials(true);
 
