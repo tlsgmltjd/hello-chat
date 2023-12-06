@@ -9,8 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.example.hellochat.global.exception.ErrorCode.DONT_FOLLOW;
-import static com.example.hellochat.global.exception.ErrorCode.NOT_MATCH_INFORMATION;
+import static com.example.hellochat.global.exception.ErrorCode.*;
 
 @Service
 @RequiredArgsConstructor
@@ -30,5 +29,19 @@ public class FollowService {
                 .toUser(toUser)
                 .fromUser(fromUser)
                 .build());
+    }
+
+    @Transactional
+    public void unfollow(Long userId, UserEntity toUser) {
+        UserEntity fromUser = userRepository.findById(userId)
+                .orElseThrow(() -> new CustomException(NOT_MATCH_INFORMATION));
+
+        Follow follow = followRepository.findByFromUser(fromUser)
+                .orElseThrow(() -> new CustomException(NOT_FOLLOW_INFORMATION));
+
+        if (follow.getToUser() != toUser)
+            throw new CustomException(DONT_UNFOLLOW);
+
+        followRepository.delete(follow);
     }
 }

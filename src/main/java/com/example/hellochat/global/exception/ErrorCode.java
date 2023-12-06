@@ -15,6 +15,10 @@ public enum ErrorCode {
 
     DONT_FOLLOW(HttpStatus.BAD_REQUEST, "팔로우할 수 없습니다."),
 
+    DONT_UNFOLLOW(HttpStatus.BAD_REQUEST, "언팔로우할 수 없습니다."),
+
+    NOT_FOLLOW_INFORMATION(HttpStatus.BAD_REQUEST, "팔로우를 찾을 수 없습니다."),
+
     NOT_MATCH_INFORMATION(HttpStatus.BAD_REQUEST, "사용자를 찾을 수 없습니다."),
 
     NOT_FOUND(HttpStatus.BAD_REQUEST, "해당 데이터를 찾을 수 없습니다."),
