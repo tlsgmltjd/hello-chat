@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
+
 import static com.example.hellochat.global.exception.ErrorCode.*;
 
 @Service
@@ -39,7 +41,7 @@ public class FollowService {
         Follow follow = followRepository.findByFromUser(fromUser)
                 .orElseThrow(() -> new CustomException(NOT_FOLLOW_INFORMATION));
 
-        if (follow.getToUser() != toUser)
+        if (!Objects.equals(follow.getToUser().getUsersId(), toUser.getUsersId()))
             throw new CustomException(DONT_UNFOLLOW);
 
         followRepository.delete(follow);
