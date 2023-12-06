@@ -18,10 +18,8 @@ public class Follow {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "from_user")
     private UserEntity fromUser;
 
     @ManyToOne
-    @JoinColumn(name = "to_user")
     private UserEntity toUser;
 }

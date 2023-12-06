@@ -40,8 +40,8 @@ public class UserEntity {
     private List<Board> posts;
 
     @OneToMany(mappedBy = "fromUser")
-    private List<Follow> followers;
+    private List<Follow> following;
 
     @OneToMany(mappedBy = "toUser")
-    private List<Follow> following;
+    private List<Follow> followers;
 }
