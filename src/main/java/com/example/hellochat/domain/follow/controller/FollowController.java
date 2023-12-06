@@ -4,6 +4,7 @@ import com.example.hellochat.domain.follow.dto.request.FollowRequest;
 import com.example.hellochat.domain.follow.service.FollowService;
 import com.example.hellochat.global.security.UserDetailsImpl;
 import com.example.hellochat.global.util.MsgResponseDto;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

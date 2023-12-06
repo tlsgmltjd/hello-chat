@@ -1,5 +1,7 @@
 package com.example.hellochat.domain.follow.service;
 
+import com.example.hellochat.domain.follow.dto.response.FollowResponse;
+import com.example.hellochat.domain.follow.dto.response.FollowUserInfo;
 import com.example.hellochat.domain.follow.entity.Follow;
 import com.example.hellochat.domain.follow.repository.FollowRepository;
 import com.example.hellochat.domain.user.entity.UserEntity;
@@ -9,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 
 import static com.example.hellochat.global.exception.ErrorCode.*;
@@ -45,5 +48,22 @@ public class FollowService {
             throw new CustomException(DONT_UNFOLLOW);
 
         followRepository.delete(follow);
+    }
+
+    @Transactional(readOnly = true)
+    public List<FollowResponse> findFollower(Long userId) {
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new CustomException(NOT_MATCH_INFORMATION));
+
+        return user.getFollowers().stream()
+                .map(follower ->
+                        FollowResponse.builder()
+                                .id(follower.getId())
+                                .user(FollowUserInfo.builder()
+                                        .id(follower.getFromUser().getUsersId())
+                                        .username(follower.getFromUser().getName())
+                                        .build())
+                                .build())
+                .toList();
     }
 }
