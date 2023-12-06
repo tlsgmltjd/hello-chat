@@ -1,6 +1,7 @@
 package com.example.hellochat.domain.user.entity;
 
 import com.example.hellochat.domain.board.entity.Board;
+import com.example.hellochat.domain.follow.entity.Follow;
 import com.example.hellochat.global.util.UserRoleEnum;
 import jakarta.persistence.*;
 import lombok.*;
@@ -37,4 +38,10 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "authorId")
     private List<Board> posts;
+
+    @OneToMany(mappedBy = "fromUser")
+    private List<Follow> followers;
+
+    @OneToMany(mappedBy = "toUser")
+    private List<Follow> following;
 }
