@@ -1,7 +1,10 @@
 package com.example.hellochat.domain.chat.entity;
 
+import com.example.hellochat.domain.user.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -14,11 +17,13 @@ public class Room {
     @GeneratedValue
     @Column(name = "room_id")
     private Long id;
-    private String name;
 
-    public static Room createRoom(String name) {
+    @OneToMany
+    private List<UserEntity> participates;
+
+    public static Room createRoom(List<UserEntity> participates) {
         return Room.builder()
-                .name(name)
+                .participates(participates)
                 .build();
     }
 

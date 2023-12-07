@@ -2,9 +2,11 @@ package com.example.hellochat.domain.chat.controller;
 
 import com.example.hellochat.domain.chat.entity.Chat;
 import com.example.hellochat.domain.chat.entity.Room;
-import com.example.hellochat.domain.chat.dto.RoomName;
+import com.example.hellochat.domain.chat.dto.RoomCreateRequest;
 import com.example.hellochat.domain.chat.service.ChatService;
+import com.example.hellochat.global.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,13 +24,13 @@ public class RoomController {
     }
 
     @PostMapping("/room")
-    public void createRoom(@RequestBody RoomName room) {
-        chatService.createRoom(room.getName());
+    public void createRoom(@RequestBody RoomCreateRequest request) {
+        chatService.createRoom(request.getParticipates());
     }
 
-    @GetMapping("/rooms")
-    public List<Room> roomList() {
-        return chatService.findAllRoom();
+    @GetMapping("/room")
+    public List<Room> roomFind(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return chatService.findRoom(userDetails.getUser());
     }
 
 }
