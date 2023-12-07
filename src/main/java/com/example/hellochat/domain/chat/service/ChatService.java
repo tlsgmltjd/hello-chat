@@ -1,5 +1,7 @@
 package com.example.hellochat.domain.chat.service;
 
+import com.example.hellochat.domain.chat.dto.ParticipateInfo;
+import com.example.hellochat.domain.chat.dto.RoomResponse;
 import com.example.hellochat.domain.chat.entity.Chat;
 import com.example.hellochat.domain.chat.entity.Room;
 import com.example.hellochat.domain.chat.repository.ChatRepository;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.example.hellochat.global.exception.ErrorCode.DUPLICATED_USERNAME;
+
 @Service
 @RequiredArgsConstructor
 public class ChatService {
@@ -20,16 +24,32 @@ public class ChatService {
     private final ChatRepository chatRepository;
     private final UserRepository userRepository;
 
-    public List<Room> findRoom() {
-        return roomRepository.findAll();
+    public List<RoomResponse> findRoom(UserEntity user) {
+        return roomRepository.findByFromUserOrToUser(user, user).stream()
+                .map(room ->
+                        RoomResponse.builder()
+                                .id(room.getId())
+                                .toUser(ParticipateInfo.builder()
+                                        .id(room.getToUser().getUsersId())
+                                        .username(room.getToUser().getName())
+                                        .build())
+                                .fromUser(ParticipateInfo.builder()
+                                        .id(room.getFromUser().getUsersId())
+                                        .username(room.getFromUser().getName())
+                                        .build())
+                                .build())
+                .toList();
     }
 
-    public void createRoom(List<Long> participateIds) {
+    public void createRoom(Long toUserId, Long fromUserId) {
+        if (toUserId.equals(fromUserId)) throw new CustomException(DUPLICATED_USERNAME);
 
-        List<UserEntity> paticipates = participateIds.stream().map(id -> userRepository.findById(id)
-                .orElseThrow(() -> new CustomException(ErrorCode.NOT_MATCH_INFORMATION))).toList();
+        UserEntity toUser = userRepository.findById(toUserId)
+                        .orElseThrow(() -> new CustomException(ErrorCode.NOT_MATCH_INFORMATION));
+        UserEntity fromUser = userRepository.findById(fromUserId)
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_MATCH_INFORMATION));
 
-        roomRepository.save(Room.createRoom(paticipates));
+        roomRepository.save(Room.createRoom(toUser, fromUser));
     }
 
     public Chat createChat(Long roomId, String sender, String message) {

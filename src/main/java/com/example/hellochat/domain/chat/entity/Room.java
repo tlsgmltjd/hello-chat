@@ -18,12 +18,18 @@ public class Room {
     @Column(name = "room_id")
     private Long id;
 
-    @OneToMany
-    private List<UserEntity> participates;
+    @ManyToOne
+    @JoinColumn(name = "to_user")
+    private UserEntity toUser;
 
-    public static Room createRoom(List<UserEntity> participates) {
+    @ManyToOne
+    @JoinColumn(name = "from_user")
+    private UserEntity fromUser;
+
+    public static Room createRoom(UserEntity toUser, UserEntity fromUser) {
         return Room.builder()
-                .participates(participates)
+                .toUser(toUser)
+                .fromUser(fromUser)
                 .build();
     }
 

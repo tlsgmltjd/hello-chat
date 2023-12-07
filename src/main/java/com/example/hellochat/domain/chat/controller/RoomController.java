@@ -1,7 +1,7 @@
 package com.example.hellochat.domain.chat.controller;
 
+import com.example.hellochat.domain.chat.dto.RoomResponse;
 import com.example.hellochat.domain.chat.entity.Chat;
-import com.example.hellochat.domain.chat.entity.Room;
 import com.example.hellochat.domain.chat.dto.RoomCreateRequest;
 import com.example.hellochat.domain.chat.service.ChatService;
 import com.example.hellochat.global.security.UserDetailsImpl;
@@ -24,12 +24,12 @@ public class RoomController {
     }
 
     @PostMapping("/room")
-    public void createRoom(@RequestBody RoomCreateRequest request) {
-        chatService.createRoom(request.getParticipates());
+    public void createRoom(@RequestBody RoomCreateRequest request, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        chatService.createRoom(userDetails.getUser().getUsersId(), request.getFromUser());
     }
 
     @GetMapping("/room")
-    public List<Room> roomFind(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public List<RoomResponse> roomFind(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         return chatService.findRoom(userDetails.getUser());
     }
 
