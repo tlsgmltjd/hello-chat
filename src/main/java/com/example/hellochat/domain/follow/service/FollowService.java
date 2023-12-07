@@ -66,4 +66,21 @@ public class FollowService {
                                 .build())
                 .toList();
     }
+
+    @Transactional(readOnly = true)
+    public List<FollowResponse> findFollowing(Long userId) {
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new CustomException(NOT_MATCH_INFORMATION));
+
+        return user.getFollowers().stream()
+                .map(follower ->
+                        FollowResponse.builder()
+                                .id(follower.getId())
+                                .user(FollowUserInfo.builder()
+                                        .id(follower.getToUser().getUsersId())
+                                        .username(follower.getToUser().getName())
+                                        .build())
+                                .build())
+                .toList();
+    }
 }
