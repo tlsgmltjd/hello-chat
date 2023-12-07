@@ -39,9 +39,9 @@ public class UserEntity {
     @OneToMany(mappedBy = "authorId")
     private List<Board> posts;
 
-    @OneToMany(mappedBy = "fromUser")
+    @OneToMany(mappedBy = "toUser")
     private List<Follow> following;
 
-    @OneToMany(mappedBy = "toUser")
+    @OneToMany(mappedBy = "fromUser")
     private List<Follow> followers;
 }

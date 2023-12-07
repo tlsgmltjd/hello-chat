@@ -60,8 +60,8 @@ public class FollowService {
                         FollowResponse.builder()
                                 .id(follower.getId())
                                 .user(FollowUserInfo.builder()
-                                        .id(follower.getFromUser().getUsersId())
-                                        .username(follower.getFromUser().getName())
+                                        .id(follower.getToUser().getUsersId())
+                                        .username(follower.getToUser().getName())
                                         .build())
                                 .build())
                 .toList();
@@ -72,13 +72,13 @@ public class FollowService {
         UserEntity user = userRepository.findById(userId)
                 .orElseThrow(() -> new CustomException(NOT_MATCH_INFORMATION));
 
-        return user.getFollowers().stream()
+        return user.getFollowing().stream()
                 .map(follower ->
                         FollowResponse.builder()
                                 .id(follower.getId())
                                 .user(FollowUserInfo.builder()
-                                        .id(follower.getToUser().getUsersId())
-                                        .username(follower.getToUser().getName())
+                                        .id(follower.getFromUser().getUsersId())
+                                        .username(follower.getFromUser().getName())
                                         .build())
                                 .build())
                 .toList();
