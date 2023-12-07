@@ -82,8 +82,8 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests((authorizeHttpRequests) ->
                 authorizeHttpRequests
                         .requestMatchers(new AntPathRequestMatcher("/refresh")).permitAll()
-//                        .requestMatchers(new AntPathRequestMatcher("/board/**")).permitAll()
-//                        .requestMatchers(new AntPathRequestMatcher("/ws-stomp/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/board/**")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/ws-stomp/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/auth/**")).permitAll()
 //                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .anyRequest().authenticated()

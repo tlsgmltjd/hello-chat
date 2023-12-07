@@ -1,5 +1,6 @@
 package com.example.hellochat.domain.chat.controller;
 
+import com.example.hellochat.domain.chat.dto.ChatResponse;
 import com.example.hellochat.domain.chat.dto.RoomResponse;
 import com.example.hellochat.domain.chat.entity.Chat;
 import com.example.hellochat.domain.chat.dto.RoomCreateRequest;
@@ -19,7 +20,7 @@ public class RoomController {
 
 
     @GetMapping("/chat/{roomId}")
-    public List<Chat> getChats(@PathVariable(required = false) Long roomId) {
+    public List<ChatResponse> getChats(@PathVariable(required = false) Long roomId) {
         return chatService.findAllChatByRoomId(roomId);
     }
 

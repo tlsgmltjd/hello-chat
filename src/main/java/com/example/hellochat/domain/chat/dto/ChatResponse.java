@@ -11,13 +11,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ChatMessage {
+public class ChatResponse {
 
     private Long roomId;
     private String sender;
-    private String message;
     private Boolean isMe;
-    private String token;
+    private String message;
     private LocalDateTime sendDate;
 
 }

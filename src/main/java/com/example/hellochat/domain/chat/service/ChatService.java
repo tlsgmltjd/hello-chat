@@ -1,5 +1,7 @@
 package com.example.hellochat.domain.chat.service;
 
+import com.example.hellochat.domain.chat.dto.ChatMessage;
+import com.example.hellochat.domain.chat.dto.ChatResponse;
 import com.example.hellochat.domain.chat.dto.ParticipateInfo;
 import com.example.hellochat.domain.chat.dto.RoomResponse;
 import com.example.hellochat.domain.chat.entity.Chat;
@@ -11,9 +13,12 @@ import com.example.hellochat.domain.user.repository.UserRepository;
 import com.example.hellochat.global.exception.CustomException;
 import com.example.hellochat.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 import static com.example.hellochat.global.exception.ErrorCode.DUPLICATED_USERNAME;
 
@@ -52,13 +57,33 @@ public class ChatService {
         roomRepository.save(Room.createRoom(toUser, fromUser));
     }
 
-    public Chat createChat(Long roomId, String sender, String message) {
+    public ChatMessage createChat(Long roomId, String sender, String message) {
         Room room = roomRepository.findById(roomId).orElseThrow();
-        return chatRepository.save(Chat.createChat(room, sender, message));
+
+        Chat chat = chatRepository.save(Chat.createChat(room, sender, message));
+
+        return ChatMessage.builder()
+                .roomId(chat.getId())
+                .sender(chat.getSender())
+                .sendDate(chat.getSendDate())
+                .isMe(null)
+                .message(chat.getMessage())
+                .build();
     }
 
-    public List<Chat> findAllChatByRoomId(Long roomId) {
-        return chatRepository.findAllByRoomId(roomId);
+    public List<ChatResponse> findAllChatByRoomId(Long roomId) {
+
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        UserEntity user = userRepository.findByName(userName).orElseThrow();
+
+        return chatRepository.findAllByRoomId(roomId).stream()
+                .map(chat -> ChatResponse.builder()
+                        .roomId(chat.getId())
+                        .sender(chat.getSender())
+                        .sendDate(chat.getSendDate())
+                        .message(chat.getMessage())
+                        .isMe(Objects.equals(chat.getSender(), user.getName()))
+                        .build()).toList();
     }
 
 
