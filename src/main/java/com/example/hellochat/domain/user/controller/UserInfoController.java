@@ -28,7 +28,7 @@ public class UserInfoController {
         return ResponseEntity.ok(userInfoService.findUserSearch(search));
     }
 
-    @GetMapping("/me")
+    @GetMapping("/myself")
     public ResponseEntity<UserIdResponse> userMeFind(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(new UserIdResponse(userDetails.getUser().getUsersId()));
     }
