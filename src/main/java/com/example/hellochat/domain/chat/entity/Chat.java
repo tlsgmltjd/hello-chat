@@ -1,5 +1,6 @@
 package com.example.hellochat.domain.chat.entity;
 
+import com.example.hellochat.domain.user.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -21,7 +22,8 @@ public class Chat {
     @JoinColumn(name = "room_id")
     private Room room;
 
-    private String sender;
+    @ManyToOne
+    private UserEntity sender;
 
     @Column(columnDefinition = "TEXT")
     private String message;
@@ -31,7 +33,7 @@ public class Chat {
     private LocalDateTime sendDate;
 
     @Builder
-    public Chat(Room room, String sender, String message) {
+    public Chat(Room room, UserEntity sender, String message) {
         this.room = room;
         this.sender = sender;
         this.message = message;
@@ -45,7 +47,7 @@ public class Chat {
      * @param message 내용
      * @return Chat Entity
      */
-    public static Chat createChat(Room room, String sender, String message) {
+    public static Chat createChat(Room room, UserEntity sender, String message) {
         return Chat.builder()
                 .room(room)
                 .sender(sender)

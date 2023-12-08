@@ -15,7 +15,7 @@ public class ChatResponse {
 
     private Long roomId;
     private String sender;
-    private Boolean isMe;
+    private Long senderId;
     private String message;
     private LocalDateTime sendDate;
 

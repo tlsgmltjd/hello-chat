@@ -36,6 +36,6 @@ public class ChatController {
         UserEntity user =  userRepository.findByName(username)
                 .orElseThrow(() -> new CustomException(INVALID_TOKEN));
 
-        return chatService.createChat(roomId, user.getName(), message.getMessage());
+        return chatService.createChat(roomId, user, message.getMessage());
     }
 }

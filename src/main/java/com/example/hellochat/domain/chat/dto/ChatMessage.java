@@ -15,8 +15,8 @@ public class ChatMessage {
 
     private Long roomId;
     private String sender;
+    private Long senderId;
     private String message;
-    private Boolean isMe;
     private String token;
     private LocalDateTime sendDate;
 

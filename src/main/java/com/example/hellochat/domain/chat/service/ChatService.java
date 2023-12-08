@@ -57,32 +57,29 @@ public class ChatService {
         roomRepository.save(Room.createRoom(toUser, fromUser));
     }
 
-    public ChatMessage createChat(Long roomId, String sender, String message) {
+    public ChatMessage createChat(Long roomId, UserEntity sender, String message) {
         Room room = roomRepository.findById(roomId).orElseThrow();
 
         Chat chat = chatRepository.save(Chat.createChat(room, sender, message));
 
         return ChatMessage.builder()
                 .roomId(chat.getId())
-                .sender(chat.getSender())
+                .sender(chat.getSender().getName())
                 .sendDate(chat.getSendDate())
-                .isMe(null)
+                .senderId(chat.getSender().getUsersId())
                 .message(chat.getMessage())
                 .build();
     }
 
     public List<ChatResponse> findAllChatByRoomId(Long roomId) {
 
-        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        UserEntity user = userRepository.findByName(userName).orElseThrow();
-
         return chatRepository.findAllByRoomId(roomId).stream()
                 .map(chat -> ChatResponse.builder()
                         .roomId(chat.getId())
-                        .sender(chat.getSender())
+                        .sender(chat.getSender().getName())
                         .sendDate(chat.getSendDate())
                         .message(chat.getMessage())
-                        .isMe(Objects.equals(chat.getSender(), user.getName()))
+                        .senderId(chat.getSender().getUsersId())
                         .build()).toList();
     }
 

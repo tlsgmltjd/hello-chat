@@ -1,6 +1,7 @@
 package com.example.hellochat.domain.user.controller;
 
 import com.example.hellochat.domain.user.dto.response.SearchUserInfoResponse;
+import com.example.hellochat.domain.user.dto.response.UserIdResponse;
 import com.example.hellochat.domain.user.dto.response.UserInfoResponse;
 import com.example.hellochat.domain.user.service.UserInfoService;
 import com.example.hellochat.global.security.UserDetailsImpl;
@@ -25,5 +26,10 @@ public class UserInfoController {
     @GetMapping
     public ResponseEntity<List<SearchUserInfoResponse>> userSearchFind(@RequestParam String search) {
         return ResponseEntity.ok(userInfoService.findUserSearch(search));
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserIdResponse> userMeFind(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return ResponseEntity.ok(new UserIdResponse(userDetails.getUser().getUsersId()));
     }
 }
