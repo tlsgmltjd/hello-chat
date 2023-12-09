@@ -6,6 +6,7 @@ import com.example.hellochat.global.util.UserRoleEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -39,9 +40,9 @@ public class UserEntity {
     @OneToMany(mappedBy = "authorId")
     private List<Board> posts;
 
-    @OneToMany(mappedBy = "toUser")
-    private List<Follow> following;
+    @OneToMany(mappedBy = "toUser", fetch = FetchType.EAGER)
+    private List<Follow> following = new ArrayList<>();
 
-    @OneToMany(mappedBy = "fromUser")
-    private List<Follow> followers;
+    @OneToMany(mappedBy = "fromUser", fetch = FetchType.EAGER)
+    private List<Follow> followers = new ArrayList<>();
 }

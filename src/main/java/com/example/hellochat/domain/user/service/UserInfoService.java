@@ -1,5 +1,6 @@
 package com.example.hellochat.domain.user.service;
 
+import com.example.hellochat.domain.follow.repository.FollowRepository;
 import com.example.hellochat.domain.user.dto.response.PostDto;
 import com.example.hellochat.domain.user.dto.response.SearchUserInfoResponse;
 import com.example.hellochat.domain.user.dto.response.UserInfoResponse;
@@ -42,5 +43,22 @@ public class UserInfoService {
         return userRepository.findByNameContaining(username)
                 .stream().map(user -> new SearchUserInfoResponse(user.getUsersId(), user.getName()))
                 .toList();
+    }
+
+    public UserInfoResponse findUserMe(UserEntity user) {
+        UserEntity findUser = userRepository.findById(user.getUsersId())
+                .orElseThrow(() -> new CustomException(NOT_MATCH_INFORMATION));
+
+        return UserInfoResponse.builder()
+                .id(findUser.getUsersId())
+                .username(findUser.getName())
+                .explain(findUser.getExplain())
+                .followers((long) user.getFollowers().size()) // temp
+                .following((long) user.getFollowing().size()) // temp
+                .isFollowed(Objects.equals(findUser.getUsersId(), user.getUsersId()) ? null : false) // temp
+                .posts(findUser.getPosts().stream().map(
+                        post -> new PostDto(post.getId(), post.getTitle(), post.getContent(), post.getLikes().size(), post.getComment().size())
+                ).toList())
+                .build();
     }
 }

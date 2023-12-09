@@ -4,6 +4,7 @@ import com.example.hellochat.domain.user.dto.response.SearchUserInfoResponse;
 import com.example.hellochat.domain.user.dto.response.UserIdResponse;
 import com.example.hellochat.domain.user.dto.response.UserInfoResponse;
 import com.example.hellochat.domain.user.service.UserInfoService;
+import com.example.hellochat.domain.user.service.UserService;
 import com.example.hellochat.global.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class UserInfoController {
     }
 
     @GetMapping("/myself")
-    public ResponseEntity<UserIdResponse> userMeFind(@AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return ResponseEntity.ok(new UserIdResponse(userDetails.getUser().getUsersId()));
+    public ResponseEntity<UserInfoResponse> userMeFind(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return ResponseEntity.ok(userInfoService.findUserMe(userDetails.getUser()));
     }
 }
