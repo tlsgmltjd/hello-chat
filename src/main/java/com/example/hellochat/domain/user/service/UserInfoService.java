@@ -30,8 +30,8 @@ public class UserInfoService {
                 .id(findUser.getUsersId())
                 .username(findUser.getName())
                 .explain(findUser.getExplain())
-                .followers(0L) // temp
-                .following(0L) // temp
+                .followers((long) user.getFollowers().size())
+                .following((long) user.getFollowing().size())
                 .isFollowed(Objects.equals(findUser.getUsersId(), user.getUsersId()) ? null : false) // temp
                 .posts(findUser.getPosts().stream().map(
                         post -> new PostDto(post.getId(), post.getTitle(), post.getContent(), post.getLikes().size(), post.getComment().size())
@@ -53,8 +53,8 @@ public class UserInfoService {
                 .id(findUser.getUsersId())
                 .username(findUser.getName())
                 .explain(findUser.getExplain())
-                .followers((long) user.getFollowers().size()) // temp
-                .following((long) user.getFollowing().size()) // temp
+                .followers((long) user.getFollowers().size())
+                .following((long) user.getFollowing().size())
                 .isFollowed(Objects.equals(findUser.getUsersId(), user.getUsersId()) ? null : false) // temp
                 .posts(findUser.getPosts().stream().map(
                         post -> new PostDto(post.getId(), post.getTitle(), post.getContent(), post.getLikes().size(), post.getComment().size())
