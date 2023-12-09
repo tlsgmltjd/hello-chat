@@ -1,5 +1,6 @@
 package com.example.hellochat.domain.user.service;
 
+import com.example.hellochat.domain.follow.entity.Follow;
 import com.example.hellochat.domain.follow.repository.FollowRepository;
 import com.example.hellochat.domain.user.dto.response.PostDto;
 import com.example.hellochat.domain.user.dto.response.SearchUserInfoResponse;
@@ -26,13 +27,16 @@ public class UserInfoService {
         UserEntity findUser = userRepository.findById(userId)
                 .orElseThrow(() -> new CustomException(NOT_MATCH_INFORMATION));
 
+        List<Follow> f = findUser.getFollowers();
+
         return UserInfoResponse.builder()
+                .id(findUser.getUsersId())
                 .id(findUser.getUsersId())
                 .username(findUser.getName())
                 .explain(findUser.getExplain())
-                .followers((long) user.getFollowers().size())
-                .following((long) user.getFollowing().size())
-                .isFollowed(Objects.equals(findUser.getUsersId(), user.getUsersId()) ? null : false) // temp
+                .followers((long) findUser.getFollowers().size())
+                .following((long) findUser.getFollowing().size())
+                .isFollowed(findUser.getFollowers().stream().anyMatch(follow -> Objects.equals(follow.getToUser().getUsersId(), user.getUsersId())))
                 .posts(findUser.getPosts().stream().map(
                         post -> new PostDto(post.getId(), post.getTitle(), post.getContent(), post.getLikes().size(), post.getComment().size())
                 ).toList())
@@ -55,7 +59,7 @@ public class UserInfoService {
                 .explain(findUser.getExplain())
                 .followers((long) user.getFollowers().size())
                 .following((long) user.getFollowing().size())
-                .isFollowed(Objects.equals(findUser.getUsersId(), user.getUsersId()) ? null : false) // temp
+                .isFollowed(null)
                 .posts(findUser.getPosts().stream().map(
                         post -> new PostDto(post.getId(), post.getTitle(), post.getContent(), post.getLikes().size(), post.getComment().size())
                 ).toList())

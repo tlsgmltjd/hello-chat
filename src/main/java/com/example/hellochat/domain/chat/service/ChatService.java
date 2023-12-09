@@ -46,7 +46,7 @@ public class ChatService {
                 .toList();
     }
 
-    public void createRoom(Long toUserId, Long fromUserId) {
+    public Long createRoom(Long toUserId, Long fromUserId) {
         if (toUserId.equals(fromUserId)) throw new CustomException(DUPLICATED_USERNAME);
 
         UserEntity toUser = userRepository.findById(toUserId)
@@ -54,7 +54,9 @@ public class ChatService {
         UserEntity fromUser = userRepository.findById(fromUserId)
                 .orElseThrow(() -> new CustomException(ErrorCode.NOT_MATCH_INFORMATION));
 
-        roomRepository.save(Room.createRoom(toUser, fromUser));
+        Room room = roomRepository.save(Room.createRoom(toUser, fromUser));
+
+        return room.getId();
     }
 
     public ChatMessage createChat(Long roomId, UserEntity sender, String message) {

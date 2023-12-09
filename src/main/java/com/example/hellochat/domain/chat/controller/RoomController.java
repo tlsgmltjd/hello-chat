@@ -25,8 +25,8 @@ public class RoomController {
     }
 
     @PostMapping("/room")
-    public void createRoom(@RequestBody RoomCreateRequest request, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        chatService.createRoom(userDetails.getUser().getUsersId(), request.getFromUser());
+    public Long createRoom(@RequestBody RoomCreateRequest request, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return chatService.createRoom(userDetails.getUser().getUsersId(), request.getFromUser());
     }
 
     @GetMapping("/room")
