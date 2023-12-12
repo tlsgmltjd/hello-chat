@@ -13,12 +13,9 @@ import com.example.hellochat.domain.user.repository.UserRepository;
 import com.example.hellochat.global.exception.CustomException;
 import com.example.hellochat.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 import static com.example.hellochat.global.exception.ErrorCode.DUPLICATED_USERNAME;
 

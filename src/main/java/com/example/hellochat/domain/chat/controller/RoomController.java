@@ -2,7 +2,6 @@ package com.example.hellochat.domain.chat.controller;
 
 import com.example.hellochat.domain.chat.dto.ChatResponse;
 import com.example.hellochat.domain.chat.dto.RoomResponse;
-import com.example.hellochat.domain.chat.entity.Chat;
 import com.example.hellochat.domain.chat.dto.RoomCreateRequest;
 import com.example.hellochat.domain.chat.service.ChatService;
 import com.example.hellochat.global.security.UserDetailsImpl;
