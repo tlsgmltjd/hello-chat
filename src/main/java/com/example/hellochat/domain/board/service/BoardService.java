@@ -17,7 +17,6 @@ import static com.example.hellochat.global.exception.ErrorCode.*;
 import com.example.hellochat.global.util.MsgResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

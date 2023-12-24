@@ -1,7 +1,6 @@
 package com.example.hellochat.domain.user.service;
 
 import com.example.hellochat.domain.follow.entity.Follow;
-import com.example.hellochat.domain.follow.repository.FollowRepository;
 import com.example.hellochat.domain.user.dto.response.PostDto;
 import com.example.hellochat.domain.user.dto.response.SearchUserInfoResponse;
 import com.example.hellochat.domain.user.dto.response.UserInfoResponse;
@@ -10,7 +9,6 @@ import com.example.hellochat.domain.user.repository.UserRepository;
 import com.example.hellochat.global.exception.CustomException;
 import static com.example.hellochat.global.exception.ErrorCode.*;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
